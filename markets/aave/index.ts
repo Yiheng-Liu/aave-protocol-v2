@@ -59,6 +59,7 @@ export const AaveConfig: IAaveConfiguration = {
   },
   ReserveAssets: {
     [eEthereumNetwork.goerli]: {},
+    [eEthereumNetwork.axiomesh]: {},
     [eEthereumNetwork.buidlerevm]: {},
     [eEthereumNetwork.hardhat]: {},
     [eEthereumNetwork.coverage]: {},

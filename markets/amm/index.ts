@@ -58,6 +58,7 @@ export const AmmConfig: IAmmConfiguration = {
   },
   ReserveAssets: {
     [eEthereumNetwork.goerli]: {},
+    [eEthereumNetwork.axiomesh]: {},
     [eEthereumNetwork.buidlerevm]: {},
     [eEthereumNetwork.hardhat]: {},
     [eEthereumNetwork.coverage]: {},

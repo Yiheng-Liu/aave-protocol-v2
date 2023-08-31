@@ -56,17 +56,12 @@ task('full:deploy-oracles', 'Deploy oracles for dev enviroment')
       let lendingRateOracle: LendingRateOracle;
 
       if (notFalsyOrZeroAddress(aaveOracleAddress)) {
-        aaveOracle = await await getAaveOracle(aaveOracleAddress);
+        aaveOracle = await getAaveOracle(aaveOracleAddress);
         await waitForTx(await aaveOracle.setAssetSources(tokens, aggregators));
       } else {
+        const addr = await getQuoteCurrency(poolConfig);
         aaveOracle = await deployAaveOracle(
-          [
-            tokens,
-            aggregators,
-            fallbackOracleAddress,
-            await getQuoteCurrency(poolConfig),
-            poolConfig.OracleQuoteUnit,
-          ],
+          [tokens, aggregators, fallbackOracleAddress, addr, poolConfig.OracleQuoteUnit],
           verify
         );
         await waitForTx(await aaveOracle.setAssetSources(tokens, aggregators));

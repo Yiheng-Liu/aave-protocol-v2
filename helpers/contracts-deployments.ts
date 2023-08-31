@@ -72,6 +72,7 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { LendingPoolLibraryAddresses } from '../types/LendingPoolFactory';
 import { UiPoolDataProvider } from '../types';
 import { eNetwork } from './types';
+import { log } from 'util';
 
 export const deployUiIncentiveDataProviderV2 = async (verify?: boolean) =>
   withSaveAndVerify(
@@ -280,13 +281,15 @@ export const deployMockAggregator = async (price: tStringTokenSmallUnits, verify
 export const deployAaveOracle = async (
   args: [tEthereumAddress[], tEthereumAddress[], tEthereumAddress, tEthereumAddress, string],
   verify?: boolean
-) =>
-  withSaveAndVerify(
+) => {
+  console.log(285, args);
+  return withSaveAndVerify(
     await new AaveOracleFactory(await getFirstSigner()).deploy(...args),
     eContractid.AaveOracle,
     args,
     verify
   );
+};
 
 export const deployLendingPoolCollateralManager = async (verify?: boolean) => {
   const collateralManagerImpl = await new LendingPoolCollateralManagerFactory(
